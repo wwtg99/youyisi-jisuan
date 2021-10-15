@@ -3,6 +3,7 @@ export default function () {
     equations: [],
     scoreEach: 10,
     equationNumber: 10,
-    equationType: 1
+    equationType: 1,
+    limitMinutes: 1
   }
 }

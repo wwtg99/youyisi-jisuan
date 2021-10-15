@@ -12,7 +12,7 @@
     </div>
     <div class="row q-py-sm">
       <div class="col">
-        <q-input outlined v-model.number="answer" placeholder="答案是？" autofocus ref="input" @keyup.enter="submitAnswer">
+        <q-input outlined v-model.number="answer" :placeholder="$t('answer_is')" autofocus ref="input" @keyup.enter="submitAnswer">
           <template v-slot:append>
             <q-btn round flat icon="send" @click="submitAnswer" />
           </template>
@@ -139,6 +139,9 @@ export default {
     },
     scoreEach () {
       return this.$store.state.equation.scoreEach
+    },
+    limitMinutes () {
+      return this.$store.state.equation.limitMinutes
     },
     ...mapGetters([
       'keyboardFold',

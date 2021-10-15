@@ -9,11 +9,6 @@ import Board from 'components/Board.vue';
 
 export default {
   name: 'Playground',
-  components: { Board },
-  mounted () {
-    this.$store.commit('equation/setNumber', 10)
-    this.$store.commit('equation/setType', 1)
-    this.$store.commit('equation/generate')
-  }
+  components: { Board }
 }
 </script>

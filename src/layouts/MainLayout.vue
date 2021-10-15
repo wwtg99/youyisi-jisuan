@@ -8,7 +8,19 @@
           Quasar App
         </q-toolbar-title>
 
-        <div>Quasar v{{ $q.version }}</div>
+        <div>Quasar v{{ $q.version }}
+          <q-select
+            v-model="locale"
+            :options="localeOptions"
+            :label="$t('language')"
+            dense
+            borderless
+            emit-value
+            map-options
+            options-dense
+            style="min-width: 150px"
+          />
+        </div>
       </q-toolbar>
     </q-header>
 
@@ -20,10 +32,22 @@
 
 <script>
 import { defineComponent } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 export default defineComponent({
   name: 'MainLayout',
   components: {},
+  setup () {
+    const { locale } = useI18n({ useScope: 'global' })
+
+    return {
+      locale,
+      localeOptions: [
+        { value: 'en-US', label: 'English' },
+        { value: 'cn-ZH', label: 'Chinese' }
+      ]
+    }
+  },
   created () {
     // load config
     this.$store.dispatch('config/load')

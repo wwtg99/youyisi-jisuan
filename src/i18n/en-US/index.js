@@ -3,5 +3,24 @@
 
 export default {
   failed: 'Action failed',
-  success: 'Action was successful'
+  success: 'Action was successful',
+  language: 'Language',
+  start: 'Start',
+  cancel: 'Cancel',
+  practice: 'Practice',
+  challenge: 'Challenge',
+  time_challenge: 'Time Limited Challenge',
+  equation_type: 'Difficulty:',
+  equation_number: 'Number:',
+  limit_minutes: 'Limited Minutes:',
+  number_1to60: 'Please specify between 1 and 60!',
+  number_1to100: 'Please specify between 1 and 100!',
+  below10: '+ and - within 10',
+  below50_1: '+ and - within 50',
+  below50_2: '+, -, * and / within 50',
+  below100_1: '+ and - within 100',
+  below100_2: '+, -, * and / within 100',
+  answer_is: 'Answer is?',
+  english: 'English',
+  chinese: 'Chinese',
 }
