@@ -1,3 +1,3 @@
 export function keyboardFold (state) {
-    return state.local.keyboardFold || false
+  return state.local.keyboardFold || false
 }

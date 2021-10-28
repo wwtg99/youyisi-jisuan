@@ -1,10 +1,10 @@
 <template>
   <q-page class="flex flex-center">
-    <div class="title">title</div>
+    <div class="text-h1 q-my-md">{{ $t('app_title') }}</div>
     <div class="link-menus">
       <div v-for="row, i in linkMenus" :key="i" class="row q-gutter-md justify-center">
         <q-card v-for="item in row" :key="item.name" class="link col-3" @click="clickLink(item)">
-          <q-img src="https://cdn.quasar.dev/img/parallax2.jpg">
+          <q-img :src="require('../assets/' + item.img + '.png')">
             <div class="absolute-bottom text-subtitle2 text-center">
               {{ $t(item.label) }}
             </div>
@@ -59,6 +59,6 @@ export default defineComponent({
   width: 100%
 .link
   width: 100%
-  max-width: 250px
+  max-width: 200px
   cursor: pointer
 </style>

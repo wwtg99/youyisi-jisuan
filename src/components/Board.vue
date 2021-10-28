@@ -73,6 +73,7 @@
         <q-btn v-else flat icon="fas fa-angle-down" style="width: 100%;" @click="toggleNumber"></q-btn>
       </div>
     </div>
+    <score-dialog ref="scoreDialog" :score="score" :totalScore="totalScore" :correct="corrects.length" :incorrect="incorrects.length" @ok="playAgain" @cancel="returnBack"></score-dialog>
   </div>
 </template>
 
@@ -80,12 +81,13 @@
 import { useQuasar } from 'quasar'
 import { createNamespacedHelpers } from 'vuex'
 import SimpleEquation from 'components/SimpleEquation'
+import ScoreDialog from './ScoreDialog.vue'
 
 const { mapGetters, mapMutations, mapActions } = createNamespacedHelpers('config')
 
 export default {
   name: 'Board',
-  components: { SimpleEquation },
+  components: { SimpleEquation, ScoreDialog },
   setup () {
     const $q = useQuasar()
     return {
@@ -102,21 +104,7 @@ export default {
           timeout: 100,
           message: 'wrong'
         })
-      },
-      displayScore () {
-        $q.dialog({
-          title: '完成',
-          message: '得分：' + this.score + ', 正确：' + this.corrects.length + ', 错误：' + this.incorrects.length,
-          ok: '再来一局',
-          cancel: '返回'
-        }).onOk(() => {
-          this.$store.commit('equation/generate')
-          this.reinit()
-        }).onCancel(() => {
-          console.log('Cancel')
-          // TODO
-        })
-      },
+      }
     }
   },
   data () {
@@ -139,6 +127,9 @@ export default {
     },
     scoreEach () {
       return this.$store.state.equation.scoreEach
+    },
+    totalScore () {
+      return this.equations.length * this.scoreEach
     },
     limitMinutes () {
       return this.$store.state.equation.limitMinutes
@@ -188,7 +179,8 @@ export default {
     },
     moveToNext () {
       if (this.currentIndex >= this.equations.length - 1) {
-        this.displayScore()
+        // this.displayScore()
+        this.$refs['scoreDialog'].show()
       } else {
         this.$refs['input'].focus()
         setTimeout(() => {
@@ -197,6 +189,13 @@ export default {
           this.answer = ''
         }, 800)
       }
+    },
+    playAgain () {
+      this.$store.commit('equation/generate')
+      this.reinit()
+    },
+    returnBack () {
+      this.$router.push({name: 'index'})
     },
     toggleNumber () {
       this.showNumber = !this.showNumber

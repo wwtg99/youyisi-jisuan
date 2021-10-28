@@ -20,4 +20,11 @@ export default {
   answer_is: '答案是？',
   english: '英语',
   chinese: '中文',
+  finish: '完成',
+  score: '得分',
+  correct: '正确',
+  incorrect: '错误',
+  play_again: '再来一局',
+  return: '返回',
+  app_title: '幼儿计算练习',
 }

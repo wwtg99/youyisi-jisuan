@@ -5,10 +5,10 @@
         <q-icon name="today"></q-icon>
 
         <q-toolbar-title>
-          Quasar App
+          {{ $t('app_title') }}
         </q-toolbar-title>
 
-        <div>Quasar v{{ $q.version }}
+        <div>
           <q-select
             v-model="locale"
             :options="localeOptions"
@@ -18,7 +18,7 @@
             emit-value
             map-options
             options-dense
-            style="min-width: 150px"
+            style="min-width: 150px;"
           />
         </div>
       </q-toolbar>
@@ -43,8 +43,8 @@ export default defineComponent({
     return {
       locale,
       localeOptions: [
-        { value: 'en-US', label: 'English' },
-        { value: 'cn-ZH', label: 'Chinese' }
+        { value: 'en-US', label: '英文 English' },
+        { value: 'cn-ZH', label: '中文 Chinese' }
       ]
     }
   },

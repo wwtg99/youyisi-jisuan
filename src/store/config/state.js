@@ -6,9 +6,9 @@ export default function () {
     },
     linkMenus: [
       [
-        { label: 'practice', name: 'playground', recordScore: false, recordTime: false },
-        { label: 'challenge', name: 'playground', recordScore: true, recordTime: false },
-        { label: 'time_challenge', name: 'playground', recordScore: true, recordTime: true },
+        { label: 'practice', name: 'playground', img: 'exercise', recordScore: false, recordTime: false },
+        { label: 'challenge', name: 'playground', img: 'challenge', recordScore: true, recordTime: false },
+        { label: 'time_challenge', name: 'playground', img: 'timer', recordScore: true, recordTime: true },
       ]
     ]
   }

@@ -23,4 +23,11 @@ export default {
   answer_is: 'Answer is?',
   english: 'English',
   chinese: 'Chinese',
+  finish: 'Finish',
+  score: 'Score',
+  correct: 'Correct',
+  incorrect: 'Incorrect',
+  play_again: 'Play Again',
+  return: 'Return',
+  app_title: 'Child Calculate Exercise',
 }
