@@ -15,6 +15,9 @@ module.exports = configure(function (ctx) {
     // https://v2.quasar.dev/quasar-cli/supporting-ts
     supportTS: false,
 
+    htmlVariables: {
+      productName: '有意思在线-幼儿计算练习'
+    },
     // https://v2.quasar.dev/quasar-cli/prefetch-feature
     // preFetch: true,
 
