@@ -34,4 +34,4 @@ yarn-error.log*
 .vscode
 
 /deploy
-/ossutils_output
+/ossutil_output
