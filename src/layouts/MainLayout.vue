@@ -5,7 +5,7 @@
         <q-icon name="today"></q-icon>
 
         <q-toolbar-title>
-          {{ $t('app_title') }}
+          <q-btn flat :to="{ name: 'index' }">{{ $t('app_title') }}</q-btn>
         </q-toolbar-title>
 
         <div>

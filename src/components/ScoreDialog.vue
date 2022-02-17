@@ -1,5 +1,5 @@
 <template>
-  <q-dialog ref="dialog" @hide="onDialogHide">
+  <q-dialog ref="dialog" persistent @hide="onDialogHide">
     <q-card class="q-dialog-plugin q-pa-md text-center">
       <p class="text-h5 text-center">{{ $t('finish') }}</p>
       <div v-if="showScore">
@@ -32,6 +32,12 @@
         <span v-if="correct" class="green">{{ $t('correct') }}: {{ correct }}</span>
         <span v-if="incorrect" class="red">{{ $t('incorrect') }}: {{ incorrect }}</span>
       </p>
+      <p v-if="timeSeconds && timeSeconds > 0" class="q-pa-sm row q-gutter-sm justify-center">
+        {{ $t('time_consume') }}: {{ timeSeconds }} {{ $t('second') }}
+      </p>
+      <div class="row justify-center">
+        {{ $t('reword') }}
+      </div>
       <div class="row justify-center">
         <q-img :src="rewordImgSrc" class="reword animate__animated animate__rubberBand animate__infinite"></q-img>
       </div>
@@ -60,6 +66,9 @@ export default {
       type: Number
     },
     incorrect: {
+      type: Number
+    },
+    timeSeconds: {
       type: Number
     }
   },

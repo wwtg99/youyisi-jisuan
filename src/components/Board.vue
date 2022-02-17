@@ -1,5 +1,9 @@
 <template>
-  <div>
+  <div class="board">
+    <div v-if="limitMinutes && limitMinutes > 0" class="row q-my-sm">
+      <time-progress ref="timer" :startOnMount="true" @timesUp="handleTimesUp"></time-progress>
+    </div>
+    <div class="number-content">
     <div class="row q-my-sm">
       <div v-if="currentIndex >= 0 && currentIndex < equations.length" class="col">
         <simple-equation :leftn="cureq.leftn" :rightn="cureq.rightn" :operator="cureq.operator" :answer="cureq.answer" :showAnswer="showAnswer"></simple-equation>
@@ -73,36 +77,40 @@
         <q-btn v-else flat icon="fas fa-angle-down" style="width: 100%;" @click="toggleNumber"></q-btn>
       </div>
     </div>
-    <score-dialog ref="scoreDialog" :score="score" :totalScore="totalScore" :correct="corrects.length" :incorrect="incorrects.length" @ok="playAgain" @cancel="returnBack"></score-dialog>
+    </div>
+    <score-dialog ref="scoreDialog" :score="score" :totalScore="totalScore" :correct="corrects.length" :incorrect="incorrects.length" :timeSeconds="timeSeconds" @ok="playAgain" @cancel="returnBack"></score-dialog>
   </div>
 </template>
 
 <script>
 import { useQuasar } from 'quasar'
+import { useI18n } from 'vue-i18n'
 import { createNamespacedHelpers } from 'vuex'
 import SimpleEquation from 'components/SimpleEquation'
 import ScoreDialog from './ScoreDialog.vue'
+import TimeProgress from './TimeProgress.vue'
 
 const { mapGetters, mapMutations, mapActions } = createNamespacedHelpers('config')
 
 export default {
   name: 'Board',
-  components: { SimpleEquation, ScoreDialog },
+  components: { SimpleEquation, ScoreDialog, TimeProgress },
   setup () {
     const $q = useQuasar()
+    const { t } = useI18n()
     return {
       displayCorrect () {
         $q.notify({
           type: 'positive',
           timeout: 100,
-          message: 'Correct'
+          message: t('correct')
         })
       },
       displayWrong () {
         $q.notify({
           type: 'negative',
           timeout: 100,
-          message: 'wrong'
+          message: t('incorrect')
         })
       }
     }
@@ -113,6 +121,7 @@ export default {
       corrects: [],
       incorrects: [],
       score: 0,
+      timeSeconds: null,
       answer: '',
       showAnswer: false,
       showNumber: true
@@ -152,6 +161,9 @@ export default {
       this.incorrects.length = 0
       this.score = 0
       this.showAnswer = false
+      if (this.$refs['timer']) {
+        this.$refs['timer'].restart()
+      }
     },
     inputAnswer (n) {
       this.answer += n
@@ -179,8 +191,7 @@ export default {
     },
     moveToNext () {
       if (this.currentIndex >= this.equations.length - 1) {
-        // this.displayScore()
-        this.$refs['scoreDialog'].show()
+        this.displayScore()
       } else {
         this.$refs['input'].focus()
         setTimeout(() => {
@@ -189,6 +200,13 @@ export default {
           this.answer = ''
         }, 800)
       }
+    },
+    displayScore () {
+      if (this.$refs['timer']) {
+        this.$refs['timer'].stop()
+        this.timeSeconds = this.$refs['timer'].getTime()
+      }
+      this.$refs['scoreDialog'].show()
     },
     playAgain () {
       this.$store.commit('equation/generate')
@@ -199,6 +217,9 @@ export default {
     },
     toggleNumber () {
       this.showNumber = !this.showNumber
+    },
+    handleTimesUp () {
+      this.displayScore()
     },
     ...mapMutations([
       'setKeyboardFold'
@@ -212,3 +233,13 @@ export default {
   }
 }
 </script>
+<style scoped>
+.board {
+  width: 80%;
+}
+.number-content {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 400px;
+}
+</style>

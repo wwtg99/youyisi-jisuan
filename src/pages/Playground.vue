@@ -9,6 +9,11 @@ import Board from 'components/Board.vue';
 
 export default {
   name: 'Playground',
-  components: { Board }
+  components: { Board },
+  mounted () {
+    if (!this.$store.state.equation.equations || this.$store.state.equation.equations.length == 0) {
+      this.$router.push({ name: 'index' })
+    }
+  }
 }
 </script>

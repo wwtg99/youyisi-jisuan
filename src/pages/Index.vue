@@ -1,6 +1,6 @@
 <template>
   <q-page class="flex flex-center">
-    <div class="text-h1 q-my-md">{{ $t('app_title') }}</div>
+    <div class="text-h1 q-my-md text-center">{{ $t('app_title') }}</div>
     <div class="link-menus">
       <div v-for="row, i in linkMenus" :key="i" class="row q-gutter-md justify-center">
         <q-card v-for="item in row" :key="item.name" class="link col-3" @click="clickLink(item)">
@@ -24,7 +24,7 @@ export default defineComponent({
   name: 'PageIndex',
   components: { StartDialog },
   setup () {
-    
+
   },
   data () {
     return {
@@ -46,7 +46,6 @@ export default defineComponent({
       this.$refs['startDialog'].show()
     },
     clickStartOk (d) {
-      console.log(d)
       this.$store.commit('equation/setConfig', d)
       this.$store.commit('equation/generate')
       this.$router.push({name: 'playground'})

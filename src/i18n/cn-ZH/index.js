@@ -9,7 +9,7 @@ export default {
   time_challenge: '限时挑战',
   equation_type: '难度类型：',
   equation_number: '题目数量：',
-  limit_minites: '限制时间（分钟）：',
+  limit_minutes: '限制时间（分钟）：',
   number_1to60: '请指定 1 到 60 的整数！',
   number_1to100: '请指定 1 到 100 的整数！',
   below10: '10 以内加减法',
@@ -27,4 +27,7 @@ export default {
   play_again: '再来一局',
   return: '返回',
   app_title: '幼儿计算练习',
+  reword: '奖励',
+  time_consume: '消耗时间',
+  second: '秒'
 }

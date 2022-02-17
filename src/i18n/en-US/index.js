@@ -30,4 +30,7 @@ export default {
   play_again: 'Play Again',
   return: 'Return',
   app_title: 'Child Calculate Exercise',
+  reword: 'Reword',
+  time_consume: 'Time Spend(s)',
+  second: 's'
 }

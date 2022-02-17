@@ -6,5 +6,7 @@ export function save ({ state }) {
 
 export function load({ state, commit }) {
     let value = LocalStorage.getItem(state.config_key)
-    commit('setLocal', JSON.parse(value))
+    if (value) {
+      commit('setLocal', JSON.parse(value))
+    }
 }
