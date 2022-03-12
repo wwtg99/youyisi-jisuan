@@ -16,9 +16,9 @@
     </div>
     <div class="row q-py-sm">
       <div class="col">
-        <q-input outlined v-model.number="answer" :placeholder="$t('answer_is')" autofocus ref="input" @keyup.enter="submitAnswer">
+        <q-input outlined readonly v-model.number="answer" :placeholder="$t('answer_is')" autofocus ref="input" @keyup.enter="submitAnswer">
           <template v-slot:append>
-            <q-btn round flat icon="send" @click="submitAnswer" />
+            <q-btn round flat icon="send" :disable="answer.length === 0" @click="submitAnswer" />
           </template>
         </q-input>
       </div>
@@ -27,46 +27,46 @@
       <div v-show="showNumber">
         <div class="row q-my-sm text-center">
           <div class="col-4">
-            <q-btn outline color="primary" label="1" @click="inputAnswer('1')" />
+            <q-btn outline color="primary" label="1" size="xl" class="number-btn" @click="inputAnswer('1')" />
           </div>
           <div class="col-4">
-            <q-btn outline color="primary" label="2" @click="inputAnswer('2')" />
+            <q-btn outline color="primary" label="2" size="xl" class="number-btn" @click="inputAnswer('2')" />
           </div>
           <div class="col-4">
-            <q-btn outline color="primary" label="3" @click="inputAnswer('3')" />
-          </div>
-        </div>
-        <div class="row q-my-sm text-center">
-          <div class="col-4">
-            <q-btn outline color="primary" label="4" @click="inputAnswer('4')" />
-          </div>
-          <div class="col-4">
-            <q-btn outline color="primary" label="5" @click="inputAnswer('5')" />
-          </div>
-          <div class="col-4">
-            <q-btn outline color="primary" label="6" @click="inputAnswer('6')" />
+            <q-btn outline color="primary" label="3" size="xl" class="number-btn" @click="inputAnswer('3')" />
           </div>
         </div>
         <div class="row q-my-sm text-center">
           <div class="col-4">
-            <q-btn outline color="primary" label="7" @click="inputAnswer('7')" />
+            <q-btn outline color="primary" label="4" size="xl" class="number-btn" @click="inputAnswer('4')" />
           </div>
           <div class="col-4">
-            <q-btn outline color="primary" label="8" @click="inputAnswer('8')" />
+            <q-btn outline color="primary" label="5" size="xl" class="number-btn" @click="inputAnswer('5')" />
           </div>
           <div class="col-4">
-            <q-btn outline color="primary" label="9" @click="inputAnswer('9')" />
+            <q-btn outline color="primary" label="6" size="xl" class="number-btn" @click="inputAnswer('6')" />
           </div>
         </div>
         <div class="row q-my-sm text-center">
           <div class="col-4">
-            <q-btn outline color="primary" label="0" @click="inputAnswer('0')" />
+            <q-btn outline color="primary" label="7" size="xl" class="number-btn" @click="inputAnswer('7')" />
           </div>
           <div class="col-4">
-            <q-btn outline color="primary" icon="backspace" padding="sm" @click="delAnswer" />
+            <q-btn outline color="primary" label="8" size="xl" class="number-btn" @click="inputAnswer('8')" />
           </div>
           <div class="col-4">
-            <q-btn outline color="primary" icon="clear" padding="sm" @click="clearAnswer" />
+            <q-btn outline color="primary" label="9" size="xl" class="number-btn" @click="inputAnswer('9')" />
+          </div>
+        </div>
+        <div class="row q-my-sm text-center">
+          <div class="col-4">
+            <q-btn outline color="primary" label="0" size="xl" class="number-btn" @click="inputAnswer('0')" />
+          </div>
+          <div class="col-4">
+            <q-btn outline color="primary" icon="backspace" padding="sm" size="xl" class="number-btn" @click="delAnswer" />
+          </div>
+          <div class="col-4">
+            <q-btn outline color="primary" icon="clear" padding="sm" size="xl" class="number-btn" @click="clearAnswer" />
           </div>
         </div>
       </div>
@@ -241,5 +241,8 @@ export default {
   margin: 0 auto;
   width: 100%;
   max-width: 400px;
+}
+.number-btn {
+  width: 80%;
 }
 </style>

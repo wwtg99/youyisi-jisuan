@@ -102,13 +102,12 @@ function generateEquation(maxLevel, type) {
   } else if (operator === 2) {
     // minus
     let leftn = randomNum(maxLevel - 1)
-    let sum = randomNum(leftn + 1, maxLevel)
+    let sum = randomNum(maxLevel - 1) + leftn
     return new SimpleEquation(sum, operator, leftn)
   } else {
     // plus
     let leftn = randomNum(maxLevel - 1)
-    let sum = randomNum(leftn + 1, maxLevel)
-    let rightn = sum - leftn
+    let rightn = randomNum(maxLevel - 1)
     return new SimpleEquation(leftn, operator, rightn)
   }
 }
