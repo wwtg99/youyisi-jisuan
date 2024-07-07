@@ -1,11 +1,13 @@
 {
   "name": "youyisi-jisuan",
-  "version": "0.0.1",
-  "description": "A Quasar Framework app",
-  "productName": "Quasar App",
+  "version": "1.0.0",
+  "description": "Calculation exercises for young children",
+  "productName": "youyisi-jisuan",
   "author": "wwt <wwtg99@126.com>",
   "private": true,
   "scripts": {
+    "dev": "npx quasar dev",
+    "build": "npx quasar build",
     "lint": "eslint --ext .js,.vue ./",
     "test": "echo \"No test specified\" && exit 0"
   },
